@@ -1,0 +1,33 @@
+import { Component, computed, OnInit } from '@angular/core';
+// import { ICartItem } from 'src/app/interfaces/cart-item';
+import { CartService } from 'src/app/services/cart.service';
+
+@Component({
+  selector: 'app-food-items-cart',
+  templateUrl: './food-items-cart.component.html',
+  styleUrls: ['./food-items-cart.component.scss']
+})
+export class FoodItemsCartComponent implements OnInit {
+  // cartItems = computed(() => this.cartService.getCartItems());  // Use computed signal for cart items
+  cart = this.cartService.cart;
+  constructor(public cartService: CartService) {}
+
+  ngOnInit(): void {
+  }
+
+  /**
+   * Decrement the quantity of a cart item
+   * @param foodItemId - ID of the cart item
+   */
+  incrementQuantity(cartItemId: number): void {
+    this.cartService.incrementQuantity(cartItemId);
+  }
+
+  /**
+   * Decrement the quantity of a cart item
+   * @param cartItemId - ID of the cart item
+   */
+  decrementQuantity(cartItemId: number): void {
+    this.cartService.decrementQuantity(cartItemId);
+  }
+}

@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<div class="cart">
+  <div class="cart-items-container">
+    <div class="header">
+      <h2 class="cart-title-margin">Food cart</h2>
+      <hr />
+    </div>
+    <div class="cart-item-headers">
+      <div class="product-header">Product</div>
+      <div class="quantity-header">Quantity</div>
+      <div class="total-price-header">Total Price</div>
+    </div>
+    <!-- used cart() to access the cart signal value -->
+    <div class="cart-items" *ngFor="let item of cart()"> 
+      <div class="item">
+        <div class="cart-item-image-description">
+          <img class="cart-item-image" [src]=item.image alt="Coriander Soup" />
+          <div class="item-name-button-container">
+            <div class="item-name"> {{ item.name }} </div>
+            <div>
+              <button class="remove-button">Remove</button>
+            </div>
+          </div>
+        </div>
+        <div class="quantity-container">
+          <button class="quantity-button">
+            <span class="decrement" (click)="decrementQuantity(item.id)">-</span>&nbsp;
+            <span class="quantity"> {{ item.quantity }} </span> &nbsp;
+            <span class="increment" (click)="incrementQuantity(item.id)">+</span>
+          </button>
+        </div>
+        <div class="total-price-container">₹{{ item.price }} </div>
+      </div>
+    </div>
+  </div>
+  <div class="order-summary">
+    <div class="header">
+      <h2 class="margin">Order summary</h2>
+      <hr />
+    </div>
+    <div class="summary-element">
+      <div class="summary-label">Subtotal</div>
+      <div class="summary-cost">₹410</div>
+    </div>
+    <div class="summary-element">
+      <div class="summary-label">Taxes</div>
+      <div class="summary-cost">₹40</div>
+    </div>
+    <div class="summary-element">
+      <div class="summary-label">Delivery charges</div>
+      <div class="summary-cost">₹50</div>
+    </div>
+    <div>
+      <hr class="bottom-line" />
+    </div>
+    <div class="summary-element">
+      <div class="summary-label">Grand total</div>
+      <div class="summary-cost">₹500</div>
+    </div>
+    <div class="checkout-button-container">
+      <button class="checkout-button">Proceed to checkout</button>
+    </div>
+  </div>
+</div>

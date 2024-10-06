@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<div class="main-section">
+  <div class="catalogue-header">Select from below range of products</div>
+  <div class="catalogue-main">
+    <div
+      *ngFor="let foodItem of foodItems()"
+      class="food-item-clickable-div"
+      [routerLink]="['/food-item-details', foodItem.id]"
+      (click)="stopPropagation($event)"
+    >
+      <div class="food-item">
+        <div class="food-item-image">
+          <img [src]="foodItem.image" [alt]="foodItem.name" />
+        </div>
+        <div class="food-item-description">
+          <div class="food-item-name margin-left">{{ foodItem.name }}</div>
+          <div class="stars margin-left">
+            <span *ngFor="let star of foodItem.stars">
+              <span *ngIf="star">&#9733;</span>
+              <span *ngIf="!star">&#9734;</span>
+            </span>
+          </div>
+          <div class="price-container margin-left">₹{{ foodItem.price }}</div>
+          
+          <!-- Button Section -->
+          <div class="button-container">
+            <ng-container *ngIf="foodItem.quantity > 0; else addToCartTemplate">
+              <button
+                class="quantity-button"
+                (click)="stopPropagation($event)"
+              >
+                <span class="decrement" (click)="decrementQuantity(foodItem.id)">-</span>
+                &nbsp;
+                <span class="quantity">{{ foodItem.quantity }}</span>
+                &nbsp;
+                <span class="increment" (click)="incrementQuantity(foodItem.id)">+</span>
+              </button>
+            </ng-container>
+
+            <ng-template #addToCartTemplate>
+              <button
+                class="add-to-cart"
+                (click)="addToCart($event, foodItem.id); stopPropagation($event)"
+              >
+                Add to cart
+              </button>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

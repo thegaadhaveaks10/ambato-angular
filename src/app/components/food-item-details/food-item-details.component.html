@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<div *ngIf="currentFoodItem()" class="food-details">
+  <div class="food-image">
+    <img [src]="currentFoodItem()?.image" [alt]="currentFoodItem()?.name" />
+  </div>
+  <div class="food-info">
+    <div class="food-item-name">{{ currentFoodItem()?.name }}</div>
+    <div class="price">₹{{ currentFoodItem()?.price }}</div>
+    <div class="stars margin-left">
+      <span *ngFor="let star of currentFoodItem()?.stars">
+        <span *ngIf="star">&#9733;</span>
+        <span *ngIf="!star">&#9734;</span>
+      </span>
+    </div>
+    <div class="food-desc">{{ currentFoodItem()?.description }}</div>
+    <div class="button-container">
+      <button
+        *ngIf="showQuantityButton(); else addToCartButton"
+        class="quantity-button"
+      >
+        <span class="decrement" (click)="decrementQuantity()">-</span>&nbsp;
+        &nbsp;
+        <span class="quantity">{{ currentFoodItem()?.quantity }}</span> &nbsp;
+        <span class="increment" (click)="incrementQuantity()">+</span>
+      </button>
+      <ng-template #addToCartButton>
+        <button class="add-to-cart" (click)="addToCart()">Add to cart</button>
+      </ng-template>
+    </div>
+  </div>
+</div>
