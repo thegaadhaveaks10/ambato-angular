@@ -29,7 +29,7 @@
             <span class="increment" (click)="incrementQuantity(item.id)">+</span>
           </button>
         </div>
-        <div class="total-price-container">₹{{ item.price }} </div>
+        <div class="total-price-container">₹{{ getTotalPrice(item) }} </div>
       </div>
     </div>
   </div>
@@ -40,7 +40,7 @@
     </div>
     <div class="summary-element">
       <div class="summary-label">Subtotal</div>
-      <div class="summary-cost">₹410</div>
+      <div class="summary-cost">₹{{ getCartSubtotal() }}</div>
     </div>
     <div class="summary-element">
       <div class="summary-label">Taxes</div>

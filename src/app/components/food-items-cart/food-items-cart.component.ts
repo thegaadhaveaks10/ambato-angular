@@ -1,5 +1,5 @@
 import { Component, computed, OnInit } from '@angular/core';
-// import { ICartItem } from 'src/app/interfaces/cart-item';
+import { ICartItem } from 'src/app/interfaces/cart-item';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -29,5 +29,29 @@ export class FoodItemsCartComponent implements OnInit {
    */
   decrementQuantity(cartItemId: number): void {
     this.cartService.decrementQuantity(cartItemId);
+  }
+
+  /**
+   * Returns the total price of a cart item based on its price and quantity.
+   * If quantity is undefined, it defaults to 0.
+   *
+   * @param cartItem - The cart item with price and quantity.
+   * @returns The calculated total price.
+   */
+  getTotalPrice(cartItem: ICartItem): number {
+    return cartItem.price * (cartItem.quantity || 0);
+  }
+
+  /**
+   * Calculates the subtotal of all items in the cart.
+   * Iterates over the cart items and sums their total prices using the cart service.
+   *
+   * @returns {number} The subtotal of all items in the cart.
+   */
+  getCartSubtotal(): number {
+    return this.cart().reduce(
+      (total, item) => total + this.getTotalPrice(item),
+      0
+    );
   }
 }
