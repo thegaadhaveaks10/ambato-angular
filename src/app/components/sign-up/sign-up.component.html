@@ -1,34 +1,32 @@
 <div class="sign-up-card">
-    <h2 class="welcome-heading">Welcome to Ambato</h2>
-      <div class="card">
-        <div class="card-header">
-          <h2>Sign up</h2>
-        </div>
-        <div class="flex-column">
-          <label for="emailInput" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="emailInput" />
-        </div>
-        <div class="flex-column">
-          <label for="usernameInput" class="form-label">Username</label>
-          <input type="text" class="form-control" id="usernameInput" />
-        </div>
-        <div class="flex-column">
-          <label for="passwordInput" class="form-label">Password</label>
-          <input type="password" class="form-control" id="passwordInput" />
-        </div>
-        <div class="flex-column">
-          <label for="confirmPasswordInput" class="form-label"
-            >Confirm password</label
-          >
-          <input
-            type="password"
-            class="form-control"
-            id="confirmPasswordInput"
-          />
-        </div>
-        <button type="submit" class="signup-button">Sign up</button>
-        <div id="signup-help">
-          Already an user? <a href="/index.html">Sign in</a>
-        </div>
-      </div>
+  <h2 class="welcome-heading">Welcome to Ambato</h2>
+  <div class="card">
+    <div class="card-header">
+      <h2>Sign up</h2>
     </div>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit($event)">
+    <div class="flex-column">
+      <label for="emailInput" class="form-label">Email address</label>
+      <input type="email" id="emailInput" formControlName="email"/>
+    </div>
+    <div class="flex-column">
+      <label for="usernameInput" class="form-label">Username</label>
+      <input type="text" id="usernameInput" formControlName="username" />
+    </div>
+    <div class="flex-column">
+      <label for="passwordInput" class="form-label">Password</label>
+      <input type="password" id="passwordInput" formControlName="password"/>
+    </div>
+    <div class="flex-column">
+      <label for="confirmPasswordInput" class="form-label"
+        >Confirm password</label
+      >
+      <input type="password" id="confirmPasswordInput" formControlName="confirmPassword" />
+    </div>
+    <button type="submit" class="signup-button">Sign up</button>
+    <div id="signup-help">
+      Already an user? <a href="/index.html">Sign in</a>
+    </div>
+  </form>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy, signal } from '@angular/core';
-import { ICartItem } from '../interfaces/cart-item';
-import { IFoodItem } from '../interfaces/fooditem';
-import { ApiService } from './api.service';
+import { ICartItem } from '../../interfaces/cart-item';
+import { IFoodItem } from '../../interfaces/fooditem';
+import { ApiService } from '../api/api.service';
 import { Subscription } from 'rxjs';
 
 @Injectable({

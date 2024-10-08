@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ICartItem } from 'src/app/interfaces/cart-item';
 import { IFoodItem } from 'src/app/interfaces/fooditem';
-import { ApiService } from 'src/app/services/api.service';
-import { CartService } from 'src/app/services/cart.service';
+import { ApiService } from 'src/app/services/api/api.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-food-catalogue',

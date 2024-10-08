@@ -23,39 +23,41 @@
             justify-content: center;
         }
 
-        .flex-column {
-            display: flex;
-            flex-direction: column;
-
-            label {
-                min-width: 17rem;
-                margin: 0.25rem auto;
+            .flex-column {
+                display: flex;
+                flex-direction: column;
+    
+                label {
+                    min-width: 17rem;
+                    margin: 0.25rem auto;
+                }
+                  
+                input {
+                    border-radius: 0.25rem;
+                    background-color: #fff; /* White */
+                    border: 1px solid #ccc; /* Light gray border */
+                    padding: 10px;
+                    min-width: 16rem;
+                    margin: 0.25rem auto;
+                }
             }
-              
-            input {
+    
+            .signup-button {
+                background-color: #0d6efd;
+                width: 30%;
+                margin: 1rem auto;
+                padding: 0.5rem;
+                border: none;
                 border-radius: 0.25rem;
-                background-color: #fff; /* White */
-                border: 1px solid #ccc; /* Light gray border */
-                padding: 10px;
-                min-width: 16rem;
-                margin: 0.25rem auto;
+                font-size: 1.1rem;
+                color: white;
+                display: flex;
+                justify-content: center;
             }
-        }
-
-        .signup-button {
-            background-color: #0d6efd;
-            width: 30%;
-            margin: 1rem auto;
-            padding: 0.5rem;
-            border: none;
-            border-radius: 0.25rem;
-            font-size: 1.1rem;
-            color: white;
-        }
-        
-        #signup-help {
-            text-align: center;
-            margin: 0 auto 1rem;
-        }
+            
+            #signup-help {
+                text-align: center;
+                margin: 0 auto 1rem;
+            }
     }
 }

@@ -10,6 +10,7 @@ import { FoodCatalogueComponent } from './components/food-catalogue/food-catalog
 import { FoodItemDetailsComponent } from './components/food-item-details/food-item-details.component';
 import { FoodItemsCartComponent } from './components/food-items-cart/food-items-cart.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
