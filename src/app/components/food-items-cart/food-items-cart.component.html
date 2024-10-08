@@ -18,7 +18,7 @@
           <div class="item-name-button-container">
             <div class="item-name"> {{ item.name }} </div>
             <div>
-              <button class="remove-button">Remove</button>
+              <button class="remove-button" (click)="removeItem(item.id)">Remove</button>
             </div>
           </div>
         </div>
@@ -42,10 +42,10 @@
       <div class="summary-label">Subtotal</div>
       <div class="summary-cost">₹{{ getCartSubtotal() }}</div>
     </div>
-    <div class="summary-element">
+    <!-- <div class="summary-element">
       <div class="summary-label">Taxes</div>
       <div class="summary-cost">₹40</div>
-    </div>
+    </div> -->
     <div class="summary-element">
       <div class="summary-label">Delivery charges</div>
       <div class="summary-cost">₹50</div>
@@ -55,7 +55,7 @@
     </div>
     <div class="summary-element">
       <div class="summary-label">Grand total</div>
-      <div class="summary-cost">₹500</div>
+      <div class="summary-cost">₹{{ getCartSubtotal() + 50}}</div>
     </div>
     <div class="checkout-button-container">
       <button class="checkout-button">Proceed to checkout</button>

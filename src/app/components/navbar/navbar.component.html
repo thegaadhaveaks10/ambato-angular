@@ -3,9 +3,10 @@
     ><label class="logo">Ambato</label></a
   >
   <div class="buttons-cotainer">
-    <button class="cart-button" routerLink="/food-items-cart">
+    <div class="cart-button" routerLink="/food-items-cart">
       <img class="cart-image" src="./assets/images/cart.png" alt="Cart image" />
-    </button>
+      <div class="cart-items-count">{{ cartService.getTotalCartItems() }}</div>
+    </div>
     <button class="signout-button">Sign out</button>
   </div>
 </div>

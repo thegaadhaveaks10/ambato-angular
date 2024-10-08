@@ -120,6 +120,15 @@ export class CartService implements OnDestroy {
     localStorage.setItem(this.cartKey, JSON.stringify(this.cart()));
   }
 
+  /**
+   * Calculates the total number of items in the cart by summing up the quantities of each item.
+   *
+   * @returns The total quantity of all items in the cart.
+   */
+  getTotalCartItems(): number {
+    return this.cart().reduce((total, item) => total + (item.quantity || 0), 0);
+  }
+
   ngOnDestroy(): void {
     this.foodItemsSubscription.unsubscribe();
   }

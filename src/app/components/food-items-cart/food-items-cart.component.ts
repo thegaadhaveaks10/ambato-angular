@@ -54,4 +54,13 @@ export class FoodItemsCartComponent implements OnInit {
       0
     );
   }
+
+  /**
+   * Removes an item from the cart based on the provided item ID.
+   *
+   * @param itemID - The unique ID of the item to be removed from the cart.
+   */
+  removeItem(itemID: number): void {
+    this.cartService.removeCartItem(itemID);
+  }
 }
