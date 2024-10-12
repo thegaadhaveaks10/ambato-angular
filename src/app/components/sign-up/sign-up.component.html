@@ -4,29 +4,51 @@
     <div class="card-header">
       <h2>Sign up</h2>
     </div>
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit($event)">
-    <div class="flex-column">
-      <label for="emailInput" class="form-label">Email address</label>
-      <input type="email" id="emailInput" formControlName="email"/>
-    </div>
-    <div class="flex-column">
-      <label for="usernameInput" class="form-label">Username</label>
-      <input type="text" id="usernameInput" formControlName="username" />
-    </div>
-    <div class="flex-column">
-      <label for="passwordInput" class="form-label">Password</label>
-      <input type="password" id="passwordInput" formControlName="password"/>
-    </div>
-    <div class="flex-column">
-      <label for="confirmPasswordInput" class="form-label"
-        >Confirm password</label
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm.value)">
+      <ng-container *ngFor="let field of formFields">
+        <div class="flex-column">
+          <label [for]="field.id" class="form-label">{{ field.label }}</label>
+          <input
+            [type]="field.type"
+            [id]="field.id"
+            [formControlName]="field.name"
+          />
+          <div
+            *ngIf="
+              signupForm.get(field.name)?.invalid &&
+              signupForm.get(field.name)?.touched
+            "
+          >
+            <ng-container *ngIf="signupForm.get(field.name)?.errors">
+              <small *ngIf="signupForm.get(field.name)?.errors?.['required']">{{
+                field.requiredMessage
+              }}</small>
+              <ng-container
+                *ngIf="field.name === 'email' && signupForm.get('email')?.errors?.['email']"
+              >
+                <small>Invalid email format.</small>
+              </ng-container>
+              <ng-container
+                *ngIf="field.name === 'password' && signupForm.get('password')?.errors?.['passwordStrength']"
+              >
+                <small
+                  >Password must contain uppercase, lowercase, number, special
+                  character, and at least 8 characters.</small
+                >
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+
+      <div
+        *ngIf="signupForm.errors?.['passwordsMismatch'] && (signupForm.get('confirmPassword')?.touched || signupForm.get('password')?.touched)"
       >
-      <input type="password" id="confirmPasswordInput" formControlName="confirmPassword" />
-    </div>
-    <button type="submit" class="signup-button">Sign up</button>
-    <div id="signup-help">
-      Already an user? <a href="/index.html">Sign in</a>
-    </div>
-  </form>
+        <small>Passwords do not match.</small>
+      </div>
+
+      <button type="submit" class="signup-button">Sign up</button>
+      <div id="signup-help">Already a user? <a routerLink="/">Sign in</a></div>
+    </form>
   </div>
 </div>
