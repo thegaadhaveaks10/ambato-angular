@@ -27,18 +27,34 @@
                 display: flex;
                 flex-direction: column;
     
-                label {
+                .form-label {
                     min-width: 17rem;
                     margin: 0.25rem auto;
                 }
                   
-                input {
+                .form-input {
                     border-radius: 0.25rem;
                     background-color: #fff; /* White */
-                    border: 1px solid #ccc; /* Light gray border */
                     padding: 10px;
                     min-width: 16rem;
                     margin: 0.25rem auto;
+                }
+
+                .normal-border {
+                    border: 1px solid #ccc; /* Light gray border */
+                }
+
+                .red-border {
+                    border: 1px solid red;
+                }
+
+                .error-div {
+                    align-self: center;
+
+                    .error-text-styles {
+                        color: red;
+                        font-weight: 500;
+                    }
                 }
             }
     

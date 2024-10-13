@@ -15,7 +15,7 @@ export class SignUpComponent implements OnInit {
       label: 'Email address',
       name: 'email',
       type: 'email',
-      requiredMessage: 'Email is required.',
+      requiredMessage: 'Email address is required.',
     },
     {
       id: 'usernameInput',

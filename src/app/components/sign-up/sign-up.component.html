@@ -9,29 +9,32 @@
         <div class="flex-column">
           <label [for]="field.id" class="form-label">{{ field.label }}</label>
           <input
+            class="form-input"
+            [ngClass]="signupForm.get(field.name)?.invalid && signupForm.get(field.name)?.touched ? 'red-border' : 'normal-border'"
             [type]="field.type"
             [id]="field.id"
             [formControlName]="field.name"
           />
           <div
+            class="error-div"
             *ngIf="
               signupForm.get(field.name)?.invalid &&
               signupForm.get(field.name)?.touched
             "
           >
             <ng-container *ngIf="signupForm.get(field.name)?.errors">
-              <small *ngIf="signupForm.get(field.name)?.errors?.['required']">{{
+              <small class="error-text-styles" *ngIf="signupForm.get(field.name)?.errors?.['required']">{{
                 field.requiredMessage
               }}</small>
               <ng-container
                 *ngIf="field.name === 'email' && signupForm.get('email')?.errors?.['email']"
               >
-                <small>Invalid email format.</small>
+                <small class="error-text-styles">Invalid email address format.</small>
               </ng-container>
               <ng-container
                 *ngIf="field.name === 'password' && signupForm.get('password')?.errors?.['passwordStrength']"
               >
-                <small
+                <small class="error-text-styles"
                   >Password must contain uppercase, lowercase, number, special
                   character, and at least 8 characters.</small
                 >
@@ -44,7 +47,7 @@
       <div
         *ngIf="signupForm.errors?.['passwordsMismatch'] && (signupForm.get('confirmPassword')?.touched || signupForm.get('password')?.touched)"
       >
-        <small>Passwords do not match.</small>
+        <small class="error-text-styles">Passwords do not match.</small>
       </div>
 
       <button type="submit" class="signup-button">Sign up</button>
