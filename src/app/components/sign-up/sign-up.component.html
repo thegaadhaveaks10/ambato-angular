@@ -10,7 +10,12 @@
           <label [for]="field.id" class="form-label">{{ field.label }}</label>
           <input
             class="form-input"
-            [ngClass]="signupForm.get(field.name)?.invalid && signupForm.get(field.name)?.touched ? 'red-border' : 'normal-border'"
+            [ngClass]="
+              signupForm.get(field.name)?.invalid &&
+              signupForm.get(field.name)?.touched
+                ? 'red-border'
+                : 'normal-border'
+            "
             [type]="field.type"
             [id]="field.id"
             [formControlName]="field.name"
@@ -23,29 +28,38 @@
             "
           >
             <ng-container *ngIf="signupForm.get(field.name)?.errors">
-              <small class="error-text-styles" *ngIf="signupForm.get(field.name)?.errors?.['required']">{{
-                field.requiredMessage
-              }}</small>
+              <ng-container
+                *ngIf="signupForm.get(field.name)?.errors?.['required']; else passwordStrengthError"
+              >
+                <small class="error-text-styles">{{
+                  field.requiredMessage
+                }}</small>
+              </ng-container>
               <ng-container
                 *ngIf="field.name === 'email' && signupForm.get('email')?.errors?.['email']"
               >
-                <small class="error-text-styles">Invalid email address format.</small>
-              </ng-container>
-              <ng-container
-                *ngIf="field.name === 'password' && signupForm.get('password')?.errors?.['passwordStrength']"
-              >
                 <small class="error-text-styles"
-                  >Password must contain uppercase, lowercase, number, special
-                  character, and at least 8 characters.</small
+                  >Invalid email address format.</small
                 >
               </ng-container>
+              <ng-template #passwordStrengthError>
+                <ng-container
+                  *ngIf="field.name === 'password' && signupForm.get('password')?.errors?.['passwordStrength']"
+                >
+                  <small class="error-text-styles"
+                    >Password must contain uppercase, lowercase, number, special
+                    character, and at least 8 characters.</small
+                  >
+                </ng-container>
+              </ng-template>
             </ng-container>
           </div>
         </div>
       </ng-container>
 
       <div
-        *ngIf="signupForm.errors?.['passwordsMismatch'] && (signupForm.get('confirmPassword')?.touched || signupForm.get('password')?.touched)"
+        class="password-match-error-div"
+        *ngIf="!signupForm.get('confirmPassword')?.errors?.['required'] && signupForm.errors?.['passwordsMismatch'] && (signupForm.get('confirmPassword')?.touched || signupForm.get('password')?.touched)"
       >
         <small class="error-text-styles">Passwords do not match.</small>
       </div>

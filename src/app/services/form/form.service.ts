@@ -22,7 +22,7 @@ export class FormService {
     const specialCharacterValidator = /[!@#$%^&*(),.?":{}|<>]+/.test(
       controlValue
     );
-    const passwordLengthValidator = controlValue >= 8;
+    const passwordLengthValidator = controlValue.length >= 8;
 
     const passwordValid =
       upperCaseValidator &&

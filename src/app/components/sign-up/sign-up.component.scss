@@ -11,6 +11,11 @@
         color: white;
     }
 
+    .error-text-styles {
+        color: red;
+        font-weight: 500;
+    }
+
     .card {
         width: 100%;
         max-width: 25rem;
@@ -54,12 +59,12 @@
                 .error-div {
                     margin: 0.2rem auto;
                     align-self: center;
-
-                    .error-text-styles {
-                        color: red;
-                        font-weight: 500;
-                    }
                 }
+            }
+
+            .password-match-error-div {
+                margin: 0.2rem auto;
+                text-align: center;
             }
     
             .signup-button {
