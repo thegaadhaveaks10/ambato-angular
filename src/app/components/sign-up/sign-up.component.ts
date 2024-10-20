@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IUserInfo } from 'src/app/interfaces/user-info';
 import { FormService } from 'src/app/services/form/form.service';
+import { UsersService } from 'src/app/services/users/users.service';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -42,10 +46,16 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private formsService: FormService
+    private formsService: FormService,
+    private usersService: UsersService
   ) {}
 
   ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  // Separate method for initializing the form
+  private initializeForm(): void {
     this.signupForm = this.formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -60,17 +70,34 @@ export class SignUpComponent implements OnInit {
         confirmPassword: ['', Validators.required],
       },
       { validators: this.formsService.passwordMismatchValidator }
-    ); // Correct placement for group-level validator
+    );
   }
 
-  onSubmit(eventData: Form) {
-    if (this.signupForm.valid) {
-      // Form is valid, proceed with submission logic
-      console.log('Form Submitted:', eventData);
-    } else {
-      // Form is invalid, handle error logic
-      console.log('Form is invalid');
-      this.signupForm.markAllAsTouched(); // Mark all fields as touched to show validation errors
+  // Form submission logic
+  onSubmit(): void {
+    if (this.signupForm.invalid) {
+      this.signupForm.markAllAsTouched(); // Show errors if invalid
+      return;
     }
+
+    const { email, username, password } = this.signupForm.value;
+
+    const newUser: IUserInfo = { email, username, password };
+
+    this.usersService
+      .addNewUser(newUser)
+      .pipe(
+        catchError((error) => {
+          console.error('Error occurred while adding a new user.', error);
+          alert('Error occurred. Please try again.');
+          return of(null);
+        })
+      )
+      .subscribe((response) => {
+        if (response) {
+          alert('New user has been added successfully!');
+          console.log('User added successfully:', response);
+        }
+      });
   }
 }

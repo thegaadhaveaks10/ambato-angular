@@ -4,7 +4,7 @@
     <div class="card-header">
       <h2>Sign up</h2>
     </div>
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm.value)">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
       <ng-container *ngFor="let field of formFields">
         <div class="flex-column">
           <label [for]="field.id" class="form-label">{{ field.label }}</label>
