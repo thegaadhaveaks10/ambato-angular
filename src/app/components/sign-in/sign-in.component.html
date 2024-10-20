@@ -1,20 +1,44 @@
 <div class="sign-in-card">
-    <h2 class="welcome-heading">Welcome to Ambato</h2>
-      <div class="card">
-        <div class="card-header">
-          <h2>Sign in</h2>
-        </div>
+  <h2 class="welcome-heading">Welcome to Ambato</h2>
+  <div class="card">
+    <div class="card-header">
+      <h2>Sign in</h2>
+    </div>
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+      <ng-container *ngFor="let field of formFields">
         <div class="flex-column">
-          <label for="emailInput" class="form-label">Email address</label>
-          <input type="email" id="emailInput">
+          <label [for]="field.id" class="form-label">{{ field.label }}</label>
+          <input
+            class="form-input"
+            [ngClass]="
+              signInForm.get(field.name)?.invalid &&
+              signInForm.get(field.name)?.touched
+                ? 'red-border'
+                : 'normal-border'
+            "
+            [type]="field.type"
+            [id]="field.id"
+            [formControlName]="field.name"
+            [attr.autocomplete]="field.autocomplete"
+          />
         </div>
-        <div class="flex-column">
-          <label for="passwordInput" class="form-label">Password</label>
-          <input type="password" id="passwordInput">
-        </div>
-        <button type="submit" class="login-button">Login</button>
-        <div id="signin-help">Not an existing user ? 
-            <a class="text-decoration-none" routerLink="/sign-up">Sign up</a>
-        </div>
-      </div>
+        <ng-container
+          *ngIf="signInForm.get(field.name)?.invalid &&
+              signInForm.get(field.name)?.touched && signInForm.get(field.name)?.errors?.['required']"
+        >
+          <small class="error-text-styles">{{ field.requiredMessage }}</small>
+        </ng-container>
+      </ng-container>
+        <small
+          *ngIf="isSubmitted && invalidCredentials"
+          class="error-text-styles"
+          >Invalid username/email or password.</small
+        >
+      <button type="submit" class="login-button" [disabled]="signInForm.invalid">Login</button>
+    </form>
+    <div id="signin-help">
+      Not an existing user?
+      <a class="text-decoration-none" routerLink="/sign-up">Sign up</a>
+    </div>
   </div>
+</div>
