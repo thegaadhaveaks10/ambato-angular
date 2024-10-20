@@ -8,6 +8,12 @@
       <ng-container *ngFor="let field of formFields">
         <div class="flex-column">
           <label [for]="field.id" class="form-label">{{ field.label }}</label>
+          <!-- Set autocomplete attribute dynamically based on the field type -->
+          <!-- 
+            1. If the field is for 'email' or 'username', set autocomplete="username".
+            2. If the field is for 'password' or 'confirmPassword', set autocomplete="new-password".
+            3. For all other fields, set autocomplete="off".
+          -->
           <input
             class="form-input"
             [ngClass]="
@@ -19,6 +25,13 @@
             [type]="field.type"
             [id]="field.id"
             [formControlName]="field.name"
+            [attr.autocomplete]="
+              field.name === 'email' || field.name === 'username'
+                ? 'username'
+                : field.name === 'password' || field.name === 'confirmPassword'
+                ? 'new-password'
+                : 'off'
+            "
           />
           <div
             class="error-div"
