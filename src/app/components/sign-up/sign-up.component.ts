@@ -49,7 +49,10 @@ export class SignUpComponent implements OnInit {
     this.signupForm = this.formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
-        username: ['', Validators.required],
+        username: [
+          '',
+          [Validators.required, Validators.pattern(/^[a-zA-Z0-9._-]{3,15}$/)],
+        ],
         password: [
           '',
           [Validators.required, this.formsService.passwordStrengthValidator],

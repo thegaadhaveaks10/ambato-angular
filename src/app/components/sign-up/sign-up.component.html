@@ -49,6 +49,14 @@
                 }}</small>
               </ng-container>
               <ng-container
+                *ngIf="field.name === 'username' && signupForm.get('username')?.errors?.['pattern']"
+              >
+                <small class="error-text-styles"
+                  >Username must be 3 to 15 characters long and can include
+                  letters, numbers, underscores, and hyphens.</small
+                >
+              </ng-container>
+              <ng-container
                 *ngIf="field.name === 'email' && signupForm.get('email')?.errors?.['email']"
               >
                 <small class="error-text-styles"
