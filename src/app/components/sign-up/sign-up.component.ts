@@ -61,6 +61,13 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(eventData: Form) {
-    console.log('errors', this.signupForm.errors);
+    if (this.signupForm.valid) {
+      // Form is valid, proceed with submission logic
+      console.log('Form Submitted:', eventData);
+    } else {
+      // Form is invalid, handle error logic
+      console.log('Form is invalid');
+      this.signupForm.markAllAsTouched(); // Mark all fields as touched to show validation errors
+    }
   }
 }
