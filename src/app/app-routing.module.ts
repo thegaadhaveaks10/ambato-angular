@@ -8,6 +8,7 @@ import { FoodItemsCartComponent } from './components/food-items-cart/food-items-
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: SignInComponent },
+  { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'food-catalogue', component: FoodCatalogueComponent },
   { path: 'food-item-details/:id', component: FoodItemDetailsComponent },
