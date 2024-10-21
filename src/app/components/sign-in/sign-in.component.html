@@ -29,12 +29,16 @@
           <small class="error-text-styles">{{ field.requiredMessage }}</small>
         </ng-container>
       </ng-container>
-        <small
-          *ngIf="isSubmitted && invalidCredentials"
-          class="error-text-styles"
-          >Invalid username/email or password.</small
-        >
-      <button type="submit" class="login-button" [disabled]="signInForm.invalid">Login</button>
+      <small *ngIf="isSubmitted && invalidCredentials" class="error-text-styles"
+        >Invalid username/email or password.</small
+      >
+      <button
+        type="submit"
+        class="login-button"
+        [disabled]="disableLoginButton()"
+      >
+        Login
+      </button>
     </form>
     <div id="signin-help">
       Not an existing user?

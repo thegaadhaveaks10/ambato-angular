@@ -85,7 +85,13 @@
         <small class="error-text-styles">Passwords do not match.</small>
       </div>
 
-      <button type="submit" class="signup-button">Sign up</button>
+      <button
+        type="submit"
+        class="signup-button"
+        [disabled]="signupForm.invalid"
+      >
+        Sign up
+      </button>
       <div id="signup-help">Already an user? <a routerLink="/">Sign in</a></div>
     </form>
   </div>

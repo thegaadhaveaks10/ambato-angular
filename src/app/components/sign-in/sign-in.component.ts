@@ -84,11 +84,10 @@ export class SignInComponent implements OnInit {
   private authenticateUser(): void {
     const { usernameOrEmail, password } = this.signInForm.value;
 
-    this.usersService.validateUser({ usernameOrEmail, password })
-      .subscribe(
-        (isUserExists: boolean) => this.handleAuthenticationResponse(isUserExists) // Handle response based on user existence
-      ),
-      (error: Error) => this.handleError(error) // Handle any errors during the authentication request;
+    this.usersService.validateUser({ usernameOrEmail, password }).subscribe(
+      (isUserExists: boolean) => this.handleAuthenticationResponse(isUserExists) // Handle response based on user existence
+    ),
+      (error: Error) => this.handleError(error); // Handle any errors during the authentication request;
   }
 
   /**
@@ -114,5 +113,18 @@ export class SignInComponent implements OnInit {
    */
   private handleError(error: Error): void {
     console.error('Error during authentication:', error.message); // Log the error for debugging
+  }
+
+  /**
+   * Determines whether the login button should be disabled based on form validity
+   * and whether the login attempt has been submitted with invalid credentials.
+   *
+   * @returns {boolean} - Returns true if the form is invalid or if the form was submitted with invalid credentials,
+   *                      otherwise false.
+   */
+  disableLoginButton(): boolean {
+    return (
+      this.signInForm.invalid || (this.isSubmitted && this.invalidCredentials)
+    );
   }
 }

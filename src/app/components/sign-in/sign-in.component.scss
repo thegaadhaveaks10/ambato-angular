@@ -74,6 +74,11 @@
             margin: 0.2rem auto;
         }
 
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
         #signin-help {
             text-align: center;
             margin: 0 auto 1rem;
