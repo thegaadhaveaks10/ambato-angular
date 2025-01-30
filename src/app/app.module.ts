@@ -11,6 +11,7 @@ import { FoodItemDetailsComponent } from './components/food-item-details/food-it
 import { FoodItemsCartComponent } from './components/food-items-cart/food-items-cart.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FoodCatalogueComponent,
     FoodItemDetailsComponent,
     FoodItemsCartComponent,
-    NavbarComponent
+    NavbarComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
