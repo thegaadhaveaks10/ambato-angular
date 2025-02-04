@@ -7,7 +7,7 @@ import {
 import { foodItems } from './../../../assets/food-items.mock';
 import { HttpErrorResponse } from '@angular/common/http';
 
-fdescribe('ApiService', () => {
+describe('ApiService', () => {
   let apiService: ApiService;
   let httpTestingController: HttpTestingController;
   const apiUrl = 'assets/json-data/food-items.json';
