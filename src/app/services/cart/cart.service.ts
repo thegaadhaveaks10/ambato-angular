@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class CartService implements OnDestroy {
   private cartKey = 'cartItems';
-  private foodItemsSubscription: Subscription;
+  public foodItemsSubscription: Subscription;
 
   // Create a signal to hold the cart array
   public cart = signal<ICartItem[]>([]);
@@ -18,11 +18,7 @@ export class CartService implements OnDestroy {
   public foodItems = signal<IFoodItem[]>([]);
 
   constructor(private apiService: ApiService) {
-    const storedCart = localStorage.getItem(this.cartKey);
-    if (storedCart) {
-      // Initialize the signal with stored cart data
-      this.cart.set(JSON.parse(storedCart));
-    }
+    this.loadCartFromStorage();
 
     (this.foodItemsSubscription = this.apiService
       .getFoodItems()
@@ -32,6 +28,13 @@ export class CartService implements OnDestroy {
       (error: Error) => {
         console.error('FoodItems are not accessible', error);
       };
+  }
+
+  private loadCartFromStorage() {
+    const storedCart = localStorage.getItem('cartItems');
+    if (storedCart) {
+      this.cart.set(JSON.parse(storedCart)); // Ensure the signal gets updated
+    }
   }
 
   // Getter to retrieve the current value of the cart signal
