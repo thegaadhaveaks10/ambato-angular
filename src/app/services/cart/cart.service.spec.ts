@@ -5,7 +5,7 @@ import { ICartItem } from '../../interfaces/cart-item';
 import { IFoodItem } from '../../interfaces/fooditem';
 import { of } from 'rxjs';
 
-fdescribe('CartService', () => {
+describe('CartService', () => {
   let service: CartService;
   let apiServiceSpy: jasmine.SpyObj<ApiService>;
   let mockCartItems: ICartItem[];

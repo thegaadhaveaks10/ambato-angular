@@ -39,7 +39,7 @@
             <ng-template #addToCartTemplate>
               <button
                 class="add-to-cart"
-                (click)="addToCart($event, foodItem.id); stopPropagation($event)"
+                (click)="addToCart(foodItem.id, $event); stopPropagation($event)"
               >
                 Add to cart
               </button>

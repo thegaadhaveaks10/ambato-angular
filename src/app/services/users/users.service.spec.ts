@@ -9,7 +9,7 @@ import { IUserInfo } from 'src/app/interfaces/user-info';
 import { catchError, of, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
-fdescribe('UsersService', () => {
+describe('UsersService', () => {
   let usersService: UsersService;
   let httpTestingController: HttpTestingController;
   const apiUrl: string = 'http://localhost:3000/users';

@@ -66,8 +66,8 @@ export class FoodCatalogueComponent implements OnInit {
    * @param event - click event to stop propagation
    * @param foodItemId - ID of the food item
    */
-  addToCart(event: Event, foodItemId: number): void {
-    event.stopPropagation();
+  addToCart(foodItemId: number, event?: Event): void {
+    event?.stopPropagation();
 
     const currentFoodItem = this.foodItems().find(item => item.id === foodItemId);
     if (!currentFoodItem) return;
